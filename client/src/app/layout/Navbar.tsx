@@ -80,6 +80,22 @@ export default function NavBar() {
                 )}
               </NavLink>
 
+              <NavLink to="/errors" style={{ textDecoration: "none" }}>
+                {({ isActive }) => (
+                  <Button
+                    color="inherit"
+                    sx={{
+                      fontSize: "1.1rem",
+                      textTransform: "uppercase",
+                      fontWeight: 600,
+                      color: isActive ? "yellow" : "#ffffff"
+                    }}
+                  >
+                    Errors
+                  </Button>
+                )}
+              </NavLink>
+
             </Box>
 
             {/* RIGHT */}
