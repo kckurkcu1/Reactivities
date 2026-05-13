@@ -3,9 +3,12 @@ import { Box, AppBar, Toolbar, Typography, Container, Button, LinearProgress } f
 import { NavLink } from "react-router";
 import { Observer } from "mobx-react-lite";
 import { useStore } from "../../lib/hooks/useStore";
+import { useAccount } from "../../lib/hooks/useAccount";
+import UserMenu from "./UserMenu";
 
 export default function NavBar() {
   const { uiStore } = useStore();
+  const { currentUser } = useAccount();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundImage: 'linear-gradient(135deg, #182a73 0%, #218aae 69%, #20a7ac 89%)', position: 'relative' }}>
@@ -99,9 +102,51 @@ export default function NavBar() {
             </Box>
 
             {/* RIGHT */}
-            <Button color="inherit">
-              User menu
-            </Button>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 2
+              }}
+            >
+              {currentUser ? (
+                <UserMenu />
+              ) : (
+                <>
+                  <NavLink to="/login" style={{ textDecoration: "none" }}>
+                    {({ isActive }) => (
+                      <Button
+                        color="inherit"
+                        sx={{
+                          fontSize: "1.1rem",
+                          textTransform: "uppercase",
+                          fontWeight: 600,
+                          color: isActive ? "yellow" : "#ffffff"
+                        }}
+                      >
+                        Login
+                      </Button>
+                    )}
+                  </NavLink>
+
+                  <NavLink to="/register" style={{ textDecoration: "none" }}>
+                    {({ isActive }) => (
+                      <Button
+                        color="inherit"
+                        sx={{
+                          fontSize: "1.1rem",
+                          textTransform: "uppercase",
+                          fontWeight: 600,
+                          color: isActive ? "yellow" : "#ffffff"
+                        }}
+                      >
+                        Register
+                      </Button>
+                    )}
+                  </NavLink>
+                </>
+              )}
+            </Box>
 
           </Toolbar>
           <Observer>
