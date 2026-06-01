@@ -22,7 +22,10 @@ export default function ActivityCard({ activity }: Props) {
                 }}
             >
                 <CardHeader
-                    avatar={<Avatar sx={{ height: 80, width: 80 }} />}
+                    avatar={<Avatar sx={{ height: 80, width: 80 }} 
+                        src={activity.hostImageUrl} 
+                        alt='Image of host'
+                    />}
                     title={activity.title}
                     slotProps={{
                         title: {
